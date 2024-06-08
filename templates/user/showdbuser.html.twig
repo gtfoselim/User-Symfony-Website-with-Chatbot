@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            
+              <h5 class="card-title">Datatables</h5>
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    
+                    <th>Role</th>
+                 
+                    <th>Photo</th>
+                    <th>Delete</th>
+                    <th>Switch</th>
+                    <th>Block</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {%for a in user %}
+                  <tr>
+                    <td>{{a.id}}</td>
+                    <td>{{a.username}}</td> 
+                    <td>{{a.fullname}}</td> 
+                    <td>{{a.email}}</td>
+                  
+    {% if a.roles is not empty and 'user'  in a.roles %}
+    <td>{{a.roles[0]}}</td>
+    
+    {% endif %}
+
+
+  {% if a.photo is not empty %}
+<td><img src="{{ asset('uploads/photos/' ~ a.photo) }}"  style="width: 80px; height: 80px; "></td>
+{% else %}
+No Photo
+{% endif %}
+    <td>
+      <a href="{{ path('deleteuserad', {'id': a.id}) }}" class="btn btn-secondary"><i class="fa-solid fa-trash-can "></i></a>
+    </td>  
+
+    <td>
+      {% if a.roles[0] == 'admin' %}
+          <a class="btn btn-warning" href="{{ path('switchroleutoser', {'id': a.id}) }}">to User
+              <!--<i class="fa-solid fa-repeat fa-spin fa-flip-both" style="color: fffafa;"></i> -->
+          </a>
+      {% else %}
+          <a class="btn btn-primary" href="{{ path('switchroleadmin', {'id': a.id}) }}">to Admin
+              <!--<i class="fa-solid fa-repeat fa-spin fa-flip-both" style="color: fffafa;"></i> -->
+          </a>
+      {% endif %}
+  </td>
+                    {% if a.token == 1 %}
+                    <td> <a class="btn btn-danger" href="{{ path('block_user', {'id': a.id}) }}" ><i class="fa-solid fa-ban fa-beat"></i></a></td>
+                    {% else %}
+                    <td> <a class="btn btn-success" href="{{ path('unblock_user', {'id': a.id}) }}" ><i class="fa-solid fa-ban fa-beat"></i></a></td>
+                    {% endif %}
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+    <section class="section" id="pdfSection" style="display: none;">
+      <h2>Liste des Profils</h2>
+      <iframe id="pdfFrame" src="{{ path('pdfadmin') }}" width="100%" height="600px"></iframe>
+  </section>
+    <button id="toggleButton" onclick="toggleView()" class="btn btn-secondary"><i class="fa-solid fa-file-pdf fa-xl"></i></button>
+
+  </main><!-- End #main -->
+ <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ <script>
+  function toggleView() {
+      var pdfSection = document.getElementById('pdfSection');
+      var dataTablesSection = document.querySelector('.section');
+
+      if (pdfSection.style.display === 'none') {
+          pdfSection.style.display = 'block';
+          dataTablesSection.style.display = 'none';
+      } else {
+          pdfSection.style.display = 'none';
+          dataTablesSection.style.display = 'block';
+      }
+  }
+</script>
+ 
+  {% endblock %}

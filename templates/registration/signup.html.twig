@@ -1,0 +1,81 @@
+{# form_template.html.twig #}
+
+{% extends 'form.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    
+
+   <div  style="display: flex; align-items: center;justify-content: center; margin-top: 50px;">
+
+    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">SignUp</h5> 
+
+              <!-- General Form Elements -->
+               
+                  <label for="inputText" class="col-sm-10 col-form-label">Username</label>
+                  <div class="col-sm-10">
+                    {{ form_widget (form.username, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.username, {'attr': {'class': 'form-danger'}}) }}
+                  </div>
+               
+                <label for="inputText" class="col-sm-4 col-form-label">Fullname</label>
+                <div class="col-sm-10">
+                    {{ form_widget(form.fullname, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.fullname, {'attr': {'class': 'form-danger'}}) }}
+                </div>
+           
+                
+                  <label for="inputEmail" class="col-sm-4 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.email, {'attr': {'class': 'form-danger'}}) }}
+                  
+                </div>
+               
+                  <label for="inputPassword" class="col-sm-4 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.password.first, {'attr': {'class': 'form-danger'}}) }}
+                 
+                </div>
+                <label for="inputPassword" class="col-sm-10 col-form-label">Confirm Password</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.password.second, {'attr': {'class': 'form-danger'}}) }}
+                 
+                </div>
+              
+                  <label for="inputNumber" class="col-sm-4 col-form-label">Number</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_errors (form.phone, {'attr': {'class': 'form-danger'}}) }}
+                </div>
+               
+                  <label for="inputNumber" class="col-sm-4 col-form-label">File Upload</label>
+                  <div class="col-sm-10">
+                    {{ form_widget(form.photo, {'attr': {'class': 'form-control'}}) }}
+                 
+                </div>
+              <br>
+                  <div class="col-sm-10" style=" display: flex;align-items: center; justify-content: center; ">
+                    
+                    {{ form_widget(form.Submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                
+                </div>
+
+            </div>
+          </div>
+          <div class=""col-12>
+            <p class="small mb-0">Already have an Account?<a href="{{path('app_login')}}">Log In</a></p>
+        </div>
+        <div class=""col-12>
+          <p class="small mb-0">Are you a Doctor?<a href="{{path('signupdoc')}}">Sign Up</a></p>
+      </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+ 

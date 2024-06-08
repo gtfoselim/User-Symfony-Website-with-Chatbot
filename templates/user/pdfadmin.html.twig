@@ -1,0 +1,71 @@
+<table class="table datatable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Photo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for a in user %}
+        <tr>
+            <td>{{ a.id }}</td>
+            <td>{{ a.username }}</td>
+            <td>{{ a.fullname }}</td>
+            <td>{{ a.email }}</td>
+            {% if a.roles is not empty and 'user' in a.roles %}
+            <td>{{ a.roles[0] }}</td>
+            {% endif %}
+            {% if a.photo is not empty %}
+            <td><img src="{{ absolute_url(asset('uploads/photos/' ~ a.photo)) }}"></td>
+{% else %}
+No Photo
+{% endif %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    function toggleView() {
+        var pdfSection = document.getElementById('pdfSection');
+        var dataTablesSection = document.querySelector('.section');
+
+        if (pdfSection.style.display === 'none') {
+            pdfSection.style.display = 'block';
+            dataTablesSection.style.display = 'none';
+        } else {
+            pdfSection.style.display = 'none';
+            dataTablesSection.style.display = 'block';
+        }
+    }
+</script>
+
+
+<style>
+    /* Style for table headers */
+    table.datatable th {
+        background-color: #f0f0f0; /* Light gray background */
+        color: #333; /* Dark text color */
+        padding: 10px; /* Padding around the content */
+    }
+
+    /* Style for table body */
+    table.datatable td {
+        border: 1px solid #ccc; /* Border around each cell */
+        padding: 10px; /* Padding around the content */
+    }
+
+    /* Style for alternate rows */
+    table.datatable tr:nth-child(even) {
+        background-color: #f9f9f9; /* Lighter background color for even rows */
+    }
+
+    /* Style for odd rows */
+    table.datatable tr:nth-child(odd) {
+        background-color: #fff; /* White background color for odd rows */
+    }
+</style>

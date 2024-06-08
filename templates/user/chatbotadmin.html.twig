@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <title>Chatbot</title>
+    <style>
+     .chatbot {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px; /* Added padding to the body */
+            display: flex;
+            justify-content: center; /* Center the content horizontally */
+            align-items: center; /* Center the content vertically */
+            height: 100vh; /* Make the body take up the full height of the viewport */
+        }
+    
+    .containerchat {
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-left:auto; /* Adjust the left margin as needed */
+        margin-right: auto;
+    }
+    
+    .chat {
+    overflow-y: scroll;
+    max-height: 500px; /* Increase the max-height value to make it bigger */
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 20px;
+   
+}
+    
+    .message {
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 5px;
+        display: inline-block;
+        max-width: 70%;
+    }
+    
+    .user-message {
+        background-color: #d6eaf8;
+        align-self: flex-end;
+        text-align: right;
+    }
+    
+    .bot-message {
+        background-color: #f0f0f0;
+        align-self: flex-start;
+        text-align: left;
+    }
+    
+    .response p {
+        margin: 0;
+    }
+    
+    .input-container {
+        display: flex;
+        margin-top: 10px; /* Added margin to separate from the chat container */
+    }
+    
+    .input-container input[type="text"] {
+        flex: 1;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+    
+    .input-container button {
+        padding: 8px 16px;
+        margin-left: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    
+    .input-container button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+
+<div class="chatbot">
+    <div class="containerchat">
+    
+        <h1>Chatbot</h1>
+        <div class="chat">
+            {% if response %}
+                <div class="message bot-message">{{ response }}</div>
+            {% endif %}
+        </div>
+        <form action="{{ path('chatbotadmin') }}" method="post" id="chatForm">
+            <div class="input-container">
+                <input type="text" id="text" name="text" value="{{ question }}" placeholder="Type your message...">
+                <button type="submit" form="chatForm">Send</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

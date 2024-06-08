@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+           <!-- Google Fonts -->
+  
+  
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{{asset ('../assets/plugins/bootstrap/css/bootstrap.min.css') }}">
+  <!-- Icon Font Css -->
+  <link rel="stylesheet" href="{{asset ('../assets/plugins/icofont/icofont.min.css') }}">
+  <!-- Slick Slider  CSS -->
+  <link rel="stylesheet" href="{{asset ('../assets/plugins/slick-carousel/slick/slick.css') }}">
+  <link rel="stylesheet" href="{{asset ('../assets/plugins/slick-carousel/slick/slick-theme.css') }}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{{asset ('../assets/css/style2.css') }}">
+  <style>
+    a:link, a:visited {
+      background-color: white;
+      color: black;
+      border: 2px solid green;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    a:hover, a:active {
+      background-color: green;
+      color: white;
+    }
+    </style>
+        {% endblock %}
+
+        {% block javascripts %}
+         
+        <script src="{{asset ('../assets/plugins/jquery/jquery.js') }}"></script>
+        <!-- Bootstrap 4.3.2 -->
+        <script src="{{asset ('../assets/plugins/bootstrap/js/popper.js') }}"></script>
+        <script src="{{asset ('../assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+        <script src="{{asset ('../assets/plugins/counterup/jquery.easing.js') }}"></script>
+        <!-- Slick Slider -->
+        <script src="{{asset ('../assets/plugins/slick-carousel/slick/slick.min.js') }}"></script>
+        <!-- Counterup -->
+        <script src="{{asset ('../assets/plugins/counterup/jquery.waypoints.min.js') }}"></script>
+        
+        <script src="{{asset ('../assets/plugins/shuffle/shuffle.min.js') }}"></script>
+        <script src="{{asset ('../assets/plugins/counterup/jquery.counterup.min.js') }}"></script>
+        <!-- Google Map -->
+        <script src="{{asset ('../assets/plugins/google-map/map.js') }}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap"></script>    
+        
+        <script src="{{asset ('../assets/js/script.js') }}"></script>
+        <script src="{{asset ('../assets/js/contact.js') }}"></script>
+        {% endblock %}
+    </head>
+    {% block heady %}
+
+    {% endblock %}
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

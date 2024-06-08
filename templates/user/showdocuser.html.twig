@@ -1,0 +1,74 @@
+{% extends 'form.html.twig' %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Data Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">Data</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-12">
+
+          <div class="card">
+            <div class="card-body">
+            
+              <h5 class="card-title">Datatables</h5>
+            
+              <!-- Table with stripped rows -->
+              <table class="table datatable">
+                
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Fullname</th>
+                    <th>Email</th>
+                    
+                    <th>Photo</th>
+                    <th>Cancel Appoitment</th>
+      
+                  </tr>
+                </thead>
+                <tbody>
+                  {%for a in user %}
+                    {% if a.roles[0] =='user' %}
+                  <tr>
+                    <td>{{a.id}}</td>
+                    <td>{{a.username}}</td> 
+                    <td>{{a.fullname}}</td> 
+                    <td>{{a.email}}</td>
+
+
+  {% if a.photo is not empty %}
+<td><img src="{{ asset('uploads/photos/' ~ a.photo) }}"  style="width: 80px; height: 80px; "></td>
+{% else %}
+No Role
+{% endif %}
+<td> <a class="btn btn-danger" href="" ><i class="fa-solid fa-ban fa-beat"></i></a></td>
+                    </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+              <!-- End Table with stripped rows -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main><!-- End #main -->
+ <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+ 
+  {% endblock %}

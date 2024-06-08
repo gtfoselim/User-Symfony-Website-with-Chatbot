@@ -1,0 +1,139 @@
+{# templates/user/profile.html.twig #}
+
+{% extends 'form.html.twig' %}
+
+
+{% block body %}
+
+<div class="pagetitle">
+      <h1>Profile</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Users</li>
+          <li class="breadcrumb-item active">Profile</li>
+        </ol>
+      </nav>
+    </div>
+    <section class="section profile">
+      <div class="row">
+        <div class="col-xl-4">
+
+          <div class="card">
+            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                {% if app.user is not null and app.user.photo is not null %}
+              <img src="{{ asset('uploads/photos/' ~ app.user.photo) }}" alt="Profile" class="rounded-circle">
+              <h2>{{ app.user.fullname }}</h2>
+              <h3>{{ app.user.roles[0] }}</h3>
+              <div class="social-links mt-2">
+                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        {% else %}
+        <p>No profile photo available</p>
+    {% endif %}
+        <div class="col-xl-8">
+
+          <div class="card">
+            <div class="card-body pt-3">
+              <!-- Bordered Tabs -->
+              <ul class="nav nav-tabs nav-tabs-bordered" role="tablist">
+
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview" aria-selected="true" role="tab">Overview</button>
+                </li>
+
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" href="{{path('editdoc',{'id':app.user.id})}}" role="tab" tabindex="-1">Edit Profile</a>
+                </li>
+                
+            
+              <div class="tab-content pt-2">
+
+                <div class="tab-pane fade profile-overview active show" id="profile-overview" role="tabpanel">
+                 <br>
+                 <br>
+                 <br>
+                  <h5 class="card-title">Profile Details</h5>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label ">User Name</div>
+                    <div class="col-lg-12 col-md-8">{{ app.user.username }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label ">Full Name</div>
+                    <div class="col-lg-12 col-md-8">{{ app.user.fullname }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label">Email</div>
+                    <div class="col-lg-9 col-md-8">{{ app.user.email }}</div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label">Phone</div>
+                    <div class="col-lg-9 col-md-8">{{ app.user.phone }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label">Speciality</div>
+                    <div class="col-lg-9 col-md-8">{{ app.user.specialite }}</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 label">Adress</div>
+                    <div class="col-lg-9 col-md-8">{{ app.user.adress }}</div>
+                  </div>
+<br>
+                  <label class="btn btn-secondary btn-sm" title="Upload new profile image">
+                    <a href="{{path('deleteuser',{'id':app.user.id})}}"><i class="fa-solid fa-trash-can fa-xl"></i></a>
+                    
+                </label>
+                </div>
+                </div>
+
+                <div class="tab-pane fade profile-edit pt-3" id="profile-edit" role="tabpanel">
+
+                  <!-- Profile Edit Form -->
+                  <form>
+                  {% if app.user is not null and app.user.photo is not null %}
+                    <div class="row mb-3">
+                      <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                      <div class="col-md-8 col-lg-9">
+                        <img src="{{ asset('uploads/photos/' ~ app.user.photo) }}" alt="Profile">
+                        <div class="pt-2">
+                          <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                          <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                        </div>
+                      </div>
+                    </div>
+{% else %}
+            <p>No profile photo available</p>
+        {% endif %}
+    
+     
+                  
+                   
+
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                  </form><!-- End Profile Edit Form -->
+
+                </div>
+
+                
+                
+              </div><!-- End Bordered Tabs -->
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
